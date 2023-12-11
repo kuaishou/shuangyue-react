@@ -21,6 +21,7 @@ export const routes = [
             {
                 path: '',
                 element: <Home />,
+                mate: { title: '登录', anth: false }
             },
             {
                 path: 'login',
@@ -67,7 +68,8 @@ export const routes = [
                     }, {
                         path: 'bar',
                         element: <AboutBar />,
-                        mate: { title: '关于bar需要登录权限', anth: true },
+                        // mate: { title: '关于bar需要登录权限', anth: true },
+                        mate: { title: '关于bar需要登录权限', anth: false },
                     }
                     , {
                         path: 'dynamic/:id',
