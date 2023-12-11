@@ -1,7 +1,7 @@
 import { Button, Tooltip } from 'antd';
 import { SearchOutlined } from '@ant-design/icons';
 import './App.css';
-import { Outlet } from 'react-router-dom';
+import { Outlet, Link } from 'react-router-dom';
 
 const App = () => (
   <div className="App">
@@ -21,6 +21,8 @@ const App = () => (
     </div>
 
     <div className='content'>
+      <Link to='/'>首页</Link>|||||
+      <Link to='/about'>关于about页</Link>
       <Outlet />
     </div>
 
