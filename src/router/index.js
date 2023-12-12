@@ -21,7 +21,7 @@ export const routes = [
             {
                 path: '',
                 element: <Home />,
-                mate: { title: '登录', anth: false }
+                mate: { title: '首页', anth: false }
             },
             {
                 path: 'login',

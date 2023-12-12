@@ -1,5 +1,6 @@
 
 import { Link, NavLink, Outlet, useNavigate, useLocation, useSearchParams } from "react-router-dom"
+import { useDispatch } from "react-redux"
 import { Button } from 'antd';
 import "./index.css"
 const About = () => {
@@ -23,6 +24,17 @@ const About = () => {
 
     console.log('useSearchParams', searchParams.get('name'))
 
+
+    //获取dispatch改变state的方法
+    const dispatch = useDispatch()
+
+    const handClick = () => {
+        dispatch({
+            type: 'addCount',
+            payload: 8
+        })
+    }
+
     return <>
         <h1>我是About 模块</h1>
         <Link to='/about/foo'>About的foo模块</Link>|||||
@@ -43,6 +55,9 @@ const About = () => {
             <Button onClick={handClick2}>编程式路由bar</Button>
             <Button onClick={handClick3}>编程式路由loader</Button>
         </h2>
+
+        <div><Button onClick={handClick}>redux+8的按钮</Button></div>
+
 
         <Outlet />
     </>

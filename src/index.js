@@ -5,11 +5,20 @@ import './index.css';
 import reportWebVitals from './reportWebVitals';
 import { RouterProvider } from 'react-router-dom';
 import router from './router';
+import store from './store';
+import { Provider } from 'react-redux';
 const root = ReactDOM.createRoot(document.getElementById('root'));
+
+
+
 root.render(
   <React.StrictMode>
+    {/* react-rdeux添加状态管理 */}
+    <Provider store={store}>
+      <RouterProvider router={router}></RouterProvider>
+    </Provider>
     {/* <App /> */}
-    <RouterProvider router={router}></RouterProvider>
+
   </React.StrictMode>
 );
 
