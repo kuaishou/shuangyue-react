@@ -1,3 +1,30 @@
+/**
+ * 使用redux-toolkit改造redux状态管理
+ */
+import { configureStore } from "@reduxjs/toolkit";
+
+import counterReducer from './modules/counter'
+import messageReducer from "./modules/message"
+
+const store = configureStore({
+    reducer: {
+        counter: counterReducer,
+        message: messageReducer
+    }
+})
+
+
+export default store
+
+
+
+
+
+
+
+
+
+/**
 import { createStore, combineReducers, applyMiddleware } from "redux"//已经废弃的方法createStore
 import { composeWithDevTools } from "redux-devtools-extension"//数据流向查看
 import {thunk} from 'redux-thunk'
@@ -14,3 +41,13 @@ const store = createStore(combineReducers({
 ))
 
 export default store
+
+ */
+
+
+
+
+
+
+
+

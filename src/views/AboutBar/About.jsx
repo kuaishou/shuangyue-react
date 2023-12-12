@@ -21,8 +21,6 @@ const AboutBar = () => {
                 payload: 'hi 邢浩东'
             })
         })
-
-
     }
     return <>
         <div>我是About的AboutBar 模块</div>
