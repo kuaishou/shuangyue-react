@@ -1,5 +1,6 @@
-import { createStore, combineReducers } from "redux"//已经废弃的方法
+import { createStore, combineReducers, applyMiddleware } from "redux"//已经废弃的方法createStore
 import { composeWithDevTools } from "redux-devtools-extension"//数据流向查看
+import {thunk} from 'redux-thunk'
 
 // composeWithDevTools  redux状态管理模块化
 import counterReducer from './modules/counter'
@@ -8,6 +9,8 @@ import messageReducer from "./modules/message"
 const store = createStore(combineReducers({
     counter: counterReducer,
     message: messageReducer
-}), composeWithDevTools())
+}), composeWithDevTools(
+    applyMiddleware(thunk)//添加处理异步操作的中间件thunk
+))
 
 export default store

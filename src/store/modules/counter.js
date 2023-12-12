@@ -13,6 +13,24 @@ const counterReducer = (state = {
             state.debuleCount = state.count * 2
             return state;
     }
-
 }
+
+export const reduxCounterAddCount = () => {
+    return (dispatch) => {//是tunk中间件回调默认传的dispatch
+        return new Promise((resolve, reject) => {
+            setTimeout(() => {
+                dispatch({
+                    type: 'counter/addCount',
+                    payload: 6
+                })
+                resolve('response data Success')
+            }, 2000)
+
+        })
+    }
+}
+
+
+
+
 export default counterReducer
