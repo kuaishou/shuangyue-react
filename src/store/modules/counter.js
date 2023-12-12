@@ -2,14 +2,21 @@
  * 使用redux-toolkit改造redux状态管理
  * 
  */
-import { createSlice } from "@reduxjs/toolkit"
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit"
 
 const initialState = {
     count: 0,
 }
+//redux异步处理方法
+export const counterTestAction = createAsyncThunk('counter/testAction', async () => {
+    const res = new Promise((resolve, reject) => {
+        setTimeout(() => {
+            resolve(8)
+        }, 2000)
 
-
-
+    })
+    return res
+})
 const counterSlice = createSlice({
     //dispath('counter/addCount')
     name: 'counter',
@@ -23,8 +30,19 @@ const counterSlice = createSlice({
             state.count = newcount;
             state.debuleCount = newcount * 2
         }
+    },
+    extraReducers: builder => {
+        builder.addCase(counterTestAction.fulfilled, (state, { payload }) => {
+            const newcount = state.count + (payload ? payload : 1)
+            state.count = newcount;
+            state.debuleCount = newcount * 2
+        })
     }
 })
+
+export default counterSlice.reducer
+
+
 export const reduxCounterAddCount = () => {
     return (dispatch) => {//是tunk中间件回调默认传的dispatch
         return new Promise((resolve, reject) => {
@@ -39,10 +57,6 @@ export const reduxCounterAddCount = () => {
         })
     }
 }
-
-export default counterSlice.reducer
-
-
 
 /**
  * 使用redux

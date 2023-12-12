@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux"
-import { reduxCounterAddCount } from "../../store/modules/counter"
+import { reduxCounterAddCount, counterTestAction } from "../../store/modules/counter"
 const AboutBar = () => {
     //获取state状态数据
     const count = useSelector(state => state.counter.count)
@@ -14,8 +14,17 @@ const AboutBar = () => {
         //     type: 'counter/addCount',
         //     payload: 5
         // })
-        dispatch(reduxCounterAddCount()).then((res) => {
-            console.log(res)
+
+        // dispatch(reduxCounterAddCount()).then((res) => {
+        //     console.log(res)
+        //     dispatch({
+        //         type: 'message/change',
+        //         payload: 'hi 邢浩东'
+        //     })
+        // })
+
+        dispatch(counterTestAction()).then((res) => {
+            console.log(res.payload)
             dispatch({
                 type: 'message/change',
                 payload: 'hi 邢浩东'
