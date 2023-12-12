@@ -1,16 +1,16 @@
 import { useState } from "react"
 import store from "../../store"
 const AboutFoo = () => {
-    const [count, setCount] = useState(store.getState().count)
+    const [count, setCount] = useState(store.getState().counter.count)
 
     const handClick = () => {
         store.dispatch({
-            type: 'addCount'
+            type: 'counter/addCount'
         })
 
     }
     store.subscribe(() => {//更新页面
-        setCount(store.getState().count)
+        setCount(store.getState().counter.count)
     })
 
     return <>

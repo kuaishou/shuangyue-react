@@ -30,7 +30,7 @@ const About = () => {
 
     const handClick = () => {
         dispatch({
-            type: 'addCount',
+            type: 'counter/addCount',
             payload: 8
         })
     }

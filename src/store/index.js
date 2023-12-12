@@ -1,18 +1,13 @@
-import { createStore } from "redux"//已经废弃的方法
+import { createStore, combineReducers } from "redux"//已经废弃的方法
 import { composeWithDevTools } from "redux-devtools-extension"//数据流向查看
 
-const counterReducer = (state = {
-    count: 1
-}, action) => {
-    switch (action.type) {
-        case 'addCount':
-            return { count: state.count + (action.payload ? action.payload : 1) }
-        default:
-            return state;
-    }
+// composeWithDevTools  redux状态管理模块化
+import counterReducer from './modules/counter'
+import messageReducer from "./modules/message"
 
-}
-
-const store = createStore(counterReducer, composeWithDevTools())
+const store = createStore(combineReducers({
+    counter: counterReducer,
+    message: messageReducer
+}), composeWithDevTools())
 
 export default store

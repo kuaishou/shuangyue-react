@@ -1,20 +1,27 @@
 import { useDispatch, useSelector } from "react-redux"
 const AboutBar = () => {
     //获取state状态数据
-    const count = useSelector(state => state.count)
+    const count = useSelector(state => state.counter.count)
+    const dublecount = useSelector(state => state.counter.debuleCount)
+    const msg = useSelector(state => state.message.msg)
 
     //获取dispatch改变state的方法
     const dispatch = useDispatch()
 
     const handClick = () => {
         dispatch({
-            type: 'addCount',
+            type: 'counter/addCount',
             payload: 5
+        })
+        dispatch({
+            type: 'message/change',
+            payload: 'hi 邢浩东'
         })
     }
     return <>
         <div>我是About的AboutBar 模块</div>
-        <h2>redux加5的数字{count}</h2>
+        <h2>redux加5的数字{count}----{dublecount}</h2>
+        <h2>redux加message是{msg}</h2>
         <button onClick={handClick}>redux添加5数字</button>
     </>
 }
