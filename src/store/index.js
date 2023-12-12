@@ -2,17 +2,40 @@
  * 使用redux-toolkit改造redux状态管理
  */
 import { configureStore } from "@reduxjs/toolkit";
+import {
+    persistStore,
+    persistReducer,
+    FLUSH,
+    REHYDRATE,
+    PAUSE,
+    PERSIST,
+    PURGE,
+    REGISTER,
+} from 'redux-persist'
+import storage from 'redux-persist/lib/storage'
 
 import counterReducer from './modules/counter'
 import messageReducer from "./modules/message"
 
+const persistConfig = {//持久化配置
+    key: 'root',
+    version: 1,
+    storage,
+}
+
 const store = configureStore({
     reducer: {
-        counter: counterReducer,
+        counter: persistReducer(persistConfig, counterReducer),//选择只持久化counter模块
         message: messageReducer
-    }
+    },
+    middleware: (getDefaultMiddleware) =>//持久化配置
+        getDefaultMiddleware({
+            serializableCheck: {
+                ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+            },
+        }),
 })
-
+persistStore(store)//持久化融合store
 
 export default store
 
